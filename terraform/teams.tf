@@ -3,7 +3,7 @@
 #
 resource "github_team" "admin" {
   name    = "Admin"
-  privacy = "public"
+  privacy = "closed"
 }
 
 resource "github_organization_security_manager" "admin" {
@@ -66,6 +66,7 @@ resource "github_team_membership" "instructors_member" {
 #
 resource "github_team" "students" {
   name = "Students"
+  privacy = "closed"
 }
 
 resource "github_team_membership" "students_member" {
