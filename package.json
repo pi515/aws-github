@@ -1,0 +1,26 @@
+{
+  "name": "clash-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "engineStrict": true,
+  "engines": {
+    "node": "20.12.2"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "type": "module",
+  "scripts": {
+    "types": "tsc --project tsconfig.check.json --noEmit",
+    "build": "rm -rf dist && rspack build",
+    "reset": "rm -rf **/node_modules **/dist **/*.tfplan **/*.lock.hcl **/.terraform",
+    "format": "terraform -chdir=terraform fmt -recursive",
+    "init": "terraform -chdir=terraform init",
+    "select": "terraform -chdir=terraform workspace select",
+    "show": "terraform -chdir=terraform workspace show",
+    "plan": "pnpm run show && terraform -chdir=terraform plan -out .plan.tfplan",
+    "apply": "terraform -chdir=terraform apply .plan.tfplan",
+    "sendit": "pnpm run build && pnpm run plan && pnpm run apply",
+    "prepare": "husky"
+  }
+}
