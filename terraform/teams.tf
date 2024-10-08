@@ -1,6 +1,6 @@
-#
+# ==
 # GH Team - Admin
-#
+# ==
 resource "github_team" "admin" {
   name    = "Admin"
   privacy = "closed"
@@ -28,9 +28,9 @@ resource "github_team_membership" "admin_maintainer" {
 }
 
 
-#
+# ==
 # GH Team - Instructors
-#
+# ==
 resource "github_team" "instructors" {
   name    = "Instructors"
   privacy = "closed"
@@ -61,11 +61,11 @@ resource "github_team_membership" "instructors_member" {
 }
 
 
-#
+# ==
 # GH Team - Students
-#
+# ==
 resource "github_team" "students" {
-  name = "Students"
+  name    = "Students"
   privacy = "closed"
 }
 
