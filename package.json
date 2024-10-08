@@ -1,5 +1,5 @@
 {
-  "name": "clash-discord-bot",
+  "name": "aws-github",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -26,6 +26,6 @@
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
     "husky": "9.1.6",
-    "typescript": "5.6.3"
+    "typescript": "5.6.2"
   }
 }

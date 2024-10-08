@@ -11,11 +11,6 @@
         "allowArbitraryExtensions"    : true,
         "allowImportingTsExtensions"  : true,
         "strict"                      : true,
-        "exactOptionalPropertyTypes"  : true,
-        "baseUrl"                     : "./",
-        "paths"                       : {
-            "#src"  : ["src"],
-            "#src/*": ["src/*"]
-        }
+        "exactOptionalPropertyTypes"  : true
     }
 }
