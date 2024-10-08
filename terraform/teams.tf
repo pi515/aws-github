@@ -2,7 +2,7 @@
 # GH Team - Admin
 # ==
 resource "github_team" "admin" {
-  name    = "Admin"
+  name    = "admin"
   privacy = "closed"
 }
 
@@ -32,7 +32,7 @@ resource "github_team_membership" "admin_maintainer" {
 # GH Team - Instructors
 # ==
 resource "github_team" "instructors" {
-  name    = "Instructors"
+  name    = "instructors"
   privacy = "closed"
 }
 
@@ -54,7 +54,7 @@ resource "github_team_membership" "instructors_maintainer" {
 }
 
 resource "github_team_membership" "instructors_member" {
-  for_each = { for k, v in var.users : k => v if element(v, 1) == "Instructors" }
+  for_each = { for k, v in var.users : k => v if element(v, 1) == "instructors" }
   team_id  = github_team.instructors.id
   username = each.key
   role     = each.value[2]
@@ -65,7 +65,7 @@ resource "github_team_membership" "instructors_member" {
 # GH Team - Students
 # ==
 resource "github_team" "students" {
-  name    = "Students"
+  name    = "students"
   privacy = "closed"
 }
 

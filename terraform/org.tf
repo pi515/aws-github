@@ -26,6 +26,6 @@ resource "github_organization_settings" "pi515" {
 }
 
 import {
-  id = data.github_organization.pi515
+  id = data.github_organization.pi515.id
   to = github_organization_settings.pi515
 }
