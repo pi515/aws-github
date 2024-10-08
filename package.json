@@ -11,8 +11,6 @@
   "packageManager": "pnpm@9.12.0",
   "type": "module",
   "scripts": {
-    "types": "tsc --project tsconfig.check.json --noEmit",
-    "build": "rm -rf dist && rspack build",
     "reset": "rm -rf **/node_modules **/dist **/*.tfplan **/*.lock.hcl **/.terraform",
     "format": "terraform -chdir=terraform fmt -recursive",
     "init": "terraform -chdir=terraform init",
@@ -20,7 +18,14 @@
     "show": "terraform -chdir=terraform workspace show",
     "plan": "pnpm run show && terraform -chdir=terraform plan -out .plan.tfplan",
     "apply": "terraform -chdir=terraform apply .plan.tfplan",
-    "sendit": "pnpm run build && pnpm run plan && pnpm run apply",
+    "prepr": "pnpm i --merge-git-branch-lockfiles",
+    "commitlint": "commitlint --edit",
     "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
+    "husky": "9.1.6",
+    "typescript": "5.6.3"
   }
 }
