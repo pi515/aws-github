@@ -23,25 +23,9 @@ jobs:
       - name: format
         run:  pnpm run formatfail
 
-  qual:
+  deploy:
     name:    qual
     needs:   [build]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run:  echo "todo - terraform CICD credentials"
-
-  regression:
-    name:    regression test
-    needs:   [qual]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run:  echo "todo - terraform CICD credentials"
-
-  prod:
-    name:    prod
-    needs:   [regression]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
