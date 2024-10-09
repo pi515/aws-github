@@ -2,14 +2,12 @@ variable "users" {
   type = map(list(string))
   default = {
     ryanemcdaniel = ["admin", "admin"]
-
     "Pi515-IA" = ["member", "instructors"]
     ptlizbeth  = ["member", "instructors"]
     Skarmm     = ["member", "instructors"]
     eshaz      = ["member", "instructors"]
     mmorth     = ["member", "instructors"]
     jayeon     = ["member", "instructors"]
-
     "aswen2000"     = ["member", "instructors"]
     troyf           = ["member", "instructors"]
     mcbullisisu     = ["member", "instructors"]
@@ -19,7 +17,6 @@ variable "users" {
     genepaul        = ["member", "instructors"]
     zkaramanlis     = ["member", "instructors"]
     ryanhaticus     = ["member", "instructors"]
-
     "Enigmatic-Star" = ["member", "previous-instructors"]
     boergerj         = ["member", "previous-instructors"]
     spurgear         = ["member", "previous-instructors"]
