@@ -45,19 +45,19 @@ resource "github_repository" "private" {
 }
 
 resource "github_branch" "private_main" {
-  for_each   = element(github_repository.public[*], 0)
+  for_each   = element(github_repository.private[*], 0)
   repository = each.value.name
   branch     = "main"
 }
 
 resource "github_branch_default" "private_main" {
-  for_each   = element(github_repository.public[*], 0)
+  for_each   = element(github_repository.private[*], 0)
   repository = each.value.name
   branch     = github_branch.public_main[each.key].branch
 }
 
 resource "github_branch_protection" "private_main" {
-  for_each                = element(github_repository.public[*], 0)
+  for_each                = element(github_repository.private[*], 0)
   repository_id           = each.value.node_id
   pattern                 = "main"
   required_linear_history = true
