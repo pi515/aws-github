@@ -97,8 +97,3 @@ resource "github_branch_protection" "public_main" {
     strict = true
   }
 }
-
-import {
-  id = "aws-github"
-  to = github_repository.public["aws_github"]
-}
