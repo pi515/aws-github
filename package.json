@@ -13,6 +13,7 @@
   "scripts": {
     "reset": "rm -rf **/node_modules **/dist **/*.tfplan **/*.lock.hcl **/.terraform",
     "format": "terraform -chdir=terraform fmt -recursive",
+    "formatfail": "terraform -chdir=terraform fmt -recursive -check .",
     "init": "terraform -chdir=terraform init",
     "select": "terraform -chdir=terraform workspace select",
     "show": "terraform -chdir=terraform workspace show",

@@ -2,14 +2,16 @@ data "aws_ssm_parameter" "gh_org_email" {
   name = "/pi515/github/email"
 }
 
-data "github_organization" "pi515" {
-  name = "pi515"
-}
-
 resource "github_organization_settings" "pi515" {
-  name          = "Pi515"
   billing_email = data.aws_ssm_parameter.gh_org_email.value
   location      = "United States of America"
+
+  name             = "Pi515"
+  company          = "Pi515"
+  description      = "We outfit the next generation of leaders with tools to change their world."
+  blog             = "https://www.pi515.org"
+  email            = "tech@pi515.org"
+  twitter_username = "Pi515_IA"
 
   default_repository_permission = "none"
 
@@ -23,9 +25,4 @@ resource "github_organization_settings" "pi515" {
   dependabot_security_updates_enabled_for_new_repositories     = true
   dependency_graph_enabled_for_new_repositories                = true
   dependabot_alerts_enabled_for_new_repositories               = true
-}
-
-import {
-  id = data.github_organization.pi515.id
-  to = github_organization_settings.pi515
 }

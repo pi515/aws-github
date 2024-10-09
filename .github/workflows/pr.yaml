@@ -1,0 +1,43 @@
+name: pr
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group:              ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name:    verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache:             pnpm
+
+      - name: install
+        run:  pnpm install
+      - name: format
+        run:  pnpm run formatfail
+
+
+  validate:
+    name:    validate
+    needs:   [verify]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: tj-actions/changed-files@v45
+        id:   changed
+        with:
+          files: |
+            terraform/**
+            *.tf
+
+      - run:  echo "${{ steps.changed.outputs.any_changed == 'true' }}"
