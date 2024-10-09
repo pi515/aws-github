@@ -12,7 +12,7 @@ variable "private_repos" {
 }
 
 resource "github_repository" "private" {
-  for_each                    = var.public_repos
+  for_each                    = var.private_repos
   name                        = replace(each.key, "_", "-")
   description                 = each.value.description
   visibility                  = "private"
