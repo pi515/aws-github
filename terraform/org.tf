@@ -6,6 +6,9 @@ resource "github_organization_settings" "pi515" {
   name          = "Pi515"
   billing_email = data.aws_ssm_parameter.gh_org_email.value
   location      = "United States of America"
+  description   = "We outfit the next generation of leaders with tools to change their world."
+  company       = "Pi515"
+  email         = "tech@pi515.org"
 
   default_repository_permission = "none"
 

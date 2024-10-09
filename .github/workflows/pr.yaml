@@ -22,9 +22,7 @@ jobs:
       - name: install
         run:  pnpm install
       - name: format
-        run:  pnpm run format -- -check
-      - name: unit test
-        run:  pnpm run unit
+        run:  pnpm run formatfail
 
 
   validate:

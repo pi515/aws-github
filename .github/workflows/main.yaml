@@ -20,12 +20,8 @@ jobs:
           cache:             pnpm
       - name: install
         run:  pnpm install
-      - name: types
-        run:  pnpm run types
-      - name: lint
-        run:  pnpm run lint
-      - name: rspack
-        run:  pnpm run build
+      - name: format
+        run:  pnpm run formatfail
 
   qual:
     name:    qual
