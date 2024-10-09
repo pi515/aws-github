@@ -41,18 +41,3 @@ jobs:
             *.tf
 
       - run:  echo "${{ steps.changed.outputs.any_changed == 'true' }}"
-      - if:   ${{ steps.changed.outputs.any_changed == 'true' }}
-        run:  echo "todo - terraform CICD credentials"
-
-      - name: todo
-        if:   ${{ steps.changed.outputs.any_changed == 'true' }}
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: 'us-east-1'
-
-      - if:   ${{ steps.changed.outputs.any_changed == 'true' }}
-        run:  terraform -chdir terraform workspace select qual
-      - if: ${{ steps.changed.outputs.any_changed == 'true' }}
-        run: terraform -chdir terraform init
-      - if: ${{ steps.changed.outputs.any_changed == 'true' }}
-        run: terraform -chdir terraform validate
