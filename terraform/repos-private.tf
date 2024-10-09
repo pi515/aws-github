@@ -1,41 +1,21 @@
-variable "public_repos" {
+variable "private_repos" {
   type = map(object({
     description = optional(string, null)
     has_wiki    = optional(bool, false)
   }))
   default = {
-    ".github" = {
-      description = ""
-      has_wiki    = false
-    }
-    aws_github = {
-      description = "GitHub repo config with terraform"
-      has_wiki    = false
-    }
-    tech_mentorship_2425 = {
-      description = "2024-2025 Tech Mentorship Class"
+    tech_mentorship_2425_private = {
+      description = "2024-2025 Tech Mentorship Class - Private Repo"
       has_wiki    = true
     }
   }
 }
 
-locals {
-  main_force_push_bypassers = [
-    data.github_user.members["ryanemcdaniel"].node_id
-  ]
-  main_dismissal_restrictions = [
-    "/${data.github_user.members["ryanemcdaniel"].username}"
-  ]
-  main_pull_request_bypassers = [
-    "/${data.github_user.members["ryanemcdaniel"].username}"
-  ]
-}
-
-resource "github_repository" "public" {
+resource "github_repository" "private" {
   for_each                    = var.public_repos
   name                        = replace(each.key, "_", "-")
   description                 = each.value.description
-  visibility                  = "public"
+  visibility                  = "private"
   license_template            = "mit"
   gitignore_template          = "Terraform"
   allow_auto_merge            = false
@@ -64,19 +44,19 @@ resource "github_repository" "public" {
   }
 }
 
-resource "github_branch" "public_main" {
+resource "github_branch" "private_main" {
   for_each   = element(github_repository.public[*], 0)
   repository = each.value.name
   branch     = "main"
 }
 
-resource "github_branch_default" "public_main" {
+resource "github_branch_default" "private_main" {
   for_each   = element(github_repository.public[*], 0)
   repository = each.value.name
   branch     = github_branch.public_main[each.key].branch
 }
 
-resource "github_branch_protection" "public_main" {
+resource "github_branch_protection" "private_main" {
   for_each                = element(github_repository.public[*], 0)
   repository_id           = each.value.node_id
   pattern                 = "main"
