@@ -3,13 +3,15 @@ data "aws_ssm_parameter" "gh_org_email" {
 }
 
 resource "github_organization_settings" "pi515" {
-  name          = "Pi515"
   billing_email = data.aws_ssm_parameter.gh_org_email.value
   location      = "United States of America"
-  blog          = "https://www.pi515.org"
-  description   = "We outfit the next generation of leaders with tools to change their world."
+
+  name          = "Pi515"
   company       = "Pi515"
+  description   = "We outfit the next generation of leaders with tools to change their world."
+  blog          = "https://www.pi515.org"
   email         = "tech@pi515.org"
+  twitter_username = "Pi515_IA"
 
   default_repository_permission = "none"
 
