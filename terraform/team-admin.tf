@@ -12,7 +12,7 @@ resource "github_team_settings" "admin" {
 }
 
 resource "github_team_repository" "admin" {
-  for_each   = element(github_repository.public[*], 0)
+  for_each   = merge(element(github_repository.public[*], 0), element(github_repository.private[*], 0))
   team_id    = github_team.admin.id
   repository = each.value.name
   permission = "admin"

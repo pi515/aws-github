@@ -8,7 +8,7 @@ resource "github_team_settings" "instructors" {
 }
 
 resource "github_team_repository" "instructors" {
-  for_each   = element(github_repository.public[*], 0)
+  for_each   = { for k, v in merge(element(github_repository.public[*], 0), element(github_repository.private[*], 0)) : k => v if !contains(["aws_github", ".github"], k) }
   team_id    = github_team.instructors.id
   repository = each.value.name
   permission = "push"
