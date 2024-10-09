@@ -17,6 +17,7 @@ variable "users" {
     genepaul         = ["member", "instructors"]
     zkaramanlis      = ["member", "instructors"]
     ryanhaticus      = ["member", "instructors"]
+    maulikshroff     = ["member", "instructors"]
     "Enigmatic-Star" = ["member", "previous-instructors"]
     boergerj         = ["member", "previous-instructors"]
     spurgear         = ["member", "previous-instructors"]
@@ -30,8 +31,8 @@ data "github_user" "members" {
 }
 
 resource "github_membership" "members" {
-  for_each             = element(data.github_user.members[*], 0)
-  username             = each.value.username
+  for_each             = var.users
+  username             = each.key
   role                 = each.value[0]
   downgrade_on_destroy = true
 }
