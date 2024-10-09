@@ -25,5 +25,5 @@ resource "github_team_membership" "instructors_member" {
   for_each = { for k, v in var.users : k => v if element(v, 1) == "instructors" }
   team_id  = github_team.instructors.id
   username = each.key
-  role     = each.value[2]
+  role     = "member"
 }
