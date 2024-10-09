@@ -19,6 +19,18 @@ variable "public_repos" {
   }
 }
 
+locals {
+  main_force_push_bypassers = [
+    data.github_user.users["ryanemcdaniel"].node_id
+  ]
+  main_dismissal_restrictions = [
+    "/${data.github_user.users["ryanemcdaniel"].username}"
+  ]
+  main_pull_request_bypassers = [
+    "/${data.github_user.users["ryanemcdaniel"].username}"
+  ]
+}
+
 resource "github_repository" "public" {
   for_each                    = var.public_repos
   name                        = replace(each.key, "_", "-")
