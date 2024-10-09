@@ -9,9 +9,6 @@ resource "github_organization_security_manager" "admin" {
 
 resource "github_team_settings" "admin" {
   team_id = github_team.admin.id
-  review_request_delegation {
-    notify = true
-  }
 }
 
 resource "github_team_repository" "admin" {
